@@ -205,3 +205,8 @@ body.on-hero .brandbar { opacity: 0; }
   .compare__head, .compare__row { grid-template-columns: 1fr; gap: 0.2rem; }
   .compare__head span:last-child { display: none; }
 }
+
+/* 08 — comparação antiga x nova */
+.shots--duo { grid-template-columns: repeat(2, 1fr); }
+.shots--duo .shot figcaption { align-items: center; }
+@media (max-width: 900px) { .shots--duo { grid-template-columns: 1fr; } }

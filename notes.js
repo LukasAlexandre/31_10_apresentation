@@ -57,9 +57,9 @@
     {
       title: "O desenvolvimento na prática",
       objetivo: "Mostrar interfaces reais, não só planejamento.",
-      fala: "Aqui é o que já aparece na tela, rodando local com dados de demonstração. Central de Módulos (Enterprise Glass V2), lista de clientes e a ficha do cliente 360°, que ainda está em desenvolvimento.",
-      destaque: ["Capturas reais do LK System rodando em ambiente local, com dados de demonstração (zeros são o banco local vazio, não números da empresa).", "Identificar o 360° como protótipo/em desenvolvimento."],
-      perguntas: ["Falta mostrar alguma tela que você considera importante?"]
+      fala: "Aqui é a comparação da identidade visual. À esquerda, a antiga: o painel escuro, aqui na tela de clientes. À direita, a nova: a Central de Módulos em Enterprise Glass V2, clara e com vidro. Tudo rodando local, com dados de demonstração.",
+      destaque: ["Capturas reais do LK System rodando em ambiente local, com dados de demonstração (zeros são o banco local vazio, não números da empresa).", "O módulo de clientes ainda aparece na identidade antiga: a migração para o Enterprise Glass V2 está em andamento."],
+      perguntas: ["Quais módulos migram para a nova identidade primeiro?"]
     },
     {
       title: "Situação comercial",
@@ -139,8 +139,7 @@
   // (evita requisições a arquivos inexistentes). Sem o nome na lista, o slide mostra o espaço reservado.
   var TELAS_DISPONIVEIS = [
     "central-de-modulos.png",
-    "gestao-de-clientes-v2.png",
-    "cliente-dedicado-360.png"
+    "gestao-de-clientes-v2.png"
   ];
   Array.prototype.forEach.call(document.querySelectorAll(".shot[data-src]"), function (fig) {
     var src = fig.getAttribute("data-src");
