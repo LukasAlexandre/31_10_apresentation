@@ -226,3 +226,10 @@ body.on-hero .brandbar { opacity: 0; }
 .fronts__list span { font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary); }
 .fronts__foot { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--text-secondary); }
 @media (max-width: 900px) { .fronts { grid-template-columns: 1fr; } }
+
+.fronts__list .gauge { flex-direction: row; align-items: center; gap: 0.8rem; }
+.gauge > div { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.gauge__ring { flex: 0 0 auto; width: clamp(64px, 9vh, 88px); height: auto; }
+.gauge__ring path { fill: rgba(255, 255, 255, 0.12); }
+.gauge__ring path.on { fill: #debb77; }
+.gauge__ring text { font-family: var(--font-display); font-weight: 700; font-size: 17px; fill: var(--text-primary); }
