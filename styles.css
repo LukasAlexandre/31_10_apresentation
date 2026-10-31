@@ -1114,7 +1114,7 @@ body.no-webgl .hero__scrim {
    Abaixo desse tamanho (notebook 1366×768, janela com barras) nada muda. */
 @media (min-width: 1700px) and (min-height: 1000px) {
   .block__inner {
-    zoom: 1.25;
+    zoom: 1;
   }
 }
 
