@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>LK Technologies Brasil — Apresentação</title>
+  <meta name="description" content="Apresentação institucional da LK Technologies Brasil — software sob medida e automação para empresas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Marca: emblema LK Technologies Brasil (assets/brand/emblema.jpg). -->
+  <header class="brandbar" aria-label="LK Technologies Brasil">
+    <img class="brandbar__logo" src="assets/brand/emblema.jpg" alt="LK Technologies Brasil" />
+  </header>
+  <!-- Ícones funcionais (sprite inline, sem arquivos externos). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6M9 11h.01M15 11h.01"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M9.5 12h5M9.5 16h5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM8 12.5l3 3 5-6"/></symbol>
+      <symbol id="i-badge" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M9 15l2 2 4-4"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 00-14-4.5L4 9M4 4v5h5M4 13a8 8 0 0014 4.5L20 15M20 20v-5h-5"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-4-4"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 4a8 8 0 100 16 8 8 0 000-16zM12 8v4l3 2"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Navegação discreta: dots 01–11. Ver main.js para scroll-spy e teclado. -->
+  <nav class="dotnav" id="dotnav" aria-label="Navegação da apresentação">
+    <button class="dotnav__item" data-target="1" aria-label="Slide 1 — Abertura"><span>01</span></button>
+    <button class="dotnav__item" data-target="2" aria-label="Slide 2 — O problema"><span>02</span></button>
+    <button class="dotnav__item" data-target="3" aria-label="Slide 3 — A solução"><span>03</span></button>
+    <button class="dotnav__item" data-target="4" aria-label="Slide 4 — O que entregamos"><span>04</span></button>
+    <button class="dotnav__item" data-target="5" aria-label="Slide 5 — Como fazemos"><span>05</span></button>
+    <button class="dotnav__item" data-target="6" aria-label="Slide 6 — Segmentos"><span>06</span></button>
+    <button class="dotnav__item" data-target="7" aria-label="Slide 7 — Liderança"><span>07</span></button>
+    <button class="dotnav__item" data-target="8" aria-label="Slide 8 — Software real"><span>08</span></button>
+    <button class="dotnav__item" data-target="9" aria-label="Slide 9 — Resultados"><span>09</span></button>
+    <button class="dotnav__item" data-target="10" aria-label="Slide 10 — Próximo passo"><span>10</span></button>
+    <button class="dotnav__item" data-target="11" aria-label="Slide 11 — Fechamento"><span>11</span></button>
+  </nav>
+
+  <div class="deck" id="deck">
+
+    <!-- ============ 01 — ABERTURA ============ -->
+    <section class="hero" id="hero" data-motion="pending" data-block="1">
+      <div class="hero__canvas-wrap" id="canvas-wrap" aria-hidden="true">
+        <canvas id="network-canvas"></canvas>
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">LK Technologies Brasil · Software &amp; Solutions</p>
+        <h1 class="hero__headline">Software sob medida e automação</h1>
+        <p class="hero__subheadline">Sistemas, automações e integrações que reduzem retrabalho e dão mais controle sobre a operação da sua empresa.</p>
+        <span class="hero__rule" aria-hidden="true"></span>
+        <p class="hero__note">lktechnologiesbrasil.com</p>
+        <p class="hero__indicator" aria-hidden="true">
+          <span class="hero__indicator-arrow">↓</span>
+          <span class="hero__indicator-label">Explorar</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="block" id="block-02" data-block="2">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">02</span>
+        <p class="block__index">02 / 11</p>
+        <p class="eyebrow">O problema</p>
+        <h2 class="block__title block__title--question">
+          Sua operação está <span class="accent">conectada?</span>
+        </h2>
+        <p class="block__lead">
+          Quando processos dependem de tarefas manuais, informações espalhadas ou ferramentas que
+          não se conectam, a operação perde tempo e controle.
+        </p>
+        <ol class="flow flow--faint" aria-label="Problemas operacionais">
+          <li class="flow__step"><span class="flow__dot"></span><span class="flow__label">Processos manuais e repetitivos</span></li>
+          <li class="flow__step"><span class="flow__dot"></span><span class="flow__label">Informações espalhadas</span></li>
+          <li class="flow__step"><span class="flow__dot"></span><span class="flow__label">Ferramentas que não se conectam</span></li>
+          <li class="flow__step"><span class="flow__dot"></span><span class="flow__label">Falta de visão da operação</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block" id="block-03" data-block="3">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">03</span>
+        <p class="block__index">03 / 11</p>
+        <p class="eyebrow">A solução</p>
+        <h2 class="block__title">Tecnologia que simplifica o que hoje é manual.</h2>
+        <div class="idea-grid">
+          <div class="idea-card">
+            <svg class="ico" aria-hidden="true"><use href="#i-layers" /></svg>
+            <p class="idea-card__title">Sistemas sob medida</p>
+            <p class="idea-card__text">Painéis, fluxos e ferramentas personalizadas para organizar dados, clientes e processos com controle real.</p>
+          </div>
+          <div class="idea-card">
+            <svg class="ico" aria-hidden="true"><use href="#i-refresh" /></svg>
+            <p class="idea-card__title">Automação de processos</p>
+            <p class="idea-card__text">Tarefas repetitivas automatizadas, com menos erros operacionais e mais tempo para a equipe.</p>
+          </div>
+          <div class="idea-card idea-card--accent">
+            <svg class="ico" aria-hidden="true"><use href="#i-globe" /></svg>
+            <p class="idea-card__title">Integração de sistemas</p>
+            <p class="idea-card__text">Sistemas, planilhas e ferramentas conectados, centralizando a informação em um só lugar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="block-04" data-block="4">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">04</span>
+        <p class="block__index">04 / 11</p>
+        <p class="eyebrow">O que entregamos</p>
+        <h2 class="block__title">Quatro frentes para transformar processos em operações eficientes.</h2>
+        <ol class="journey">
+          <li class="journey__step">
+            <span class="journey__icon"><svg class="ico" aria-hidden="true"><use href="#i-layers" /></svg></span>
+            <p class="journey__text">Sistemas Sob Medida</p>
+            <ul class="feature-list"><li>Gestão de clientes e projetos</li><li>Controle operacional</li><li>Permissões e acesso seguro</li></ul>
+          </li>
+          <li class="journey__step">
+            <span class="journey__icon"><svg class="ico" aria-hidden="true"><use href="#i-refresh" /></svg></span>
+            <p class="journey__text">Automação de Processos</p>
+            <ul class="feature-list"><li>Mapeamento do processo atual</li><li>Rotinas automatizadas</li><li>Menos retrabalho manual</li></ul>
+          </li>
+          <li class="journey__step">
+            <span class="journey__icon"><svg class="ico" aria-hidden="true"><use href="#i-globe" /></svg></span>
+            <p class="journey__text">Integração de Sistemas</p>
+            <ul class="feature-list"><li>Integração via API</li><li>Sincronização de dados</li><li>Menos retrabalho entre sistemas</li></ul>
+          </li>
+          <li class="journey__step journey__step--accent">
+            <span class="journey__icon"><svg class="ico" aria-hidden="true"><use href="#i-doc" /></svg></span>
+            <p class="journey__text">Sites e Landing Pages</p>
+            <ul class="feature-list"><li>Design responsivo premium</li><li>CTA e estrutura estratégica</li><li>SEO técnico aplicado</li></ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block" id="block-05" data-block="5">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">05</span>
+        <p class="block__index">05 / 11</p>
+        <p class="eyebrow">Como fazemos</p>
+        <h2 class="block__title">Qualidade, segurança e compromisso com resultado real.</h2>
+        <ol class="ledger" aria-label="Pilares de engenharia">
+          <li class="ledger__item"><span class="ledger__dot"></span><p class="ledger__title">Arquitetura preparada para evolução</p><p class="ledger__meta">Java e JavaScript</p></li>
+          <li class="ledger__item"><span class="ledger__dot"></span><p class="ledger__title">Segurança aplicada desde a base</p><p class="ledger__meta">Compliance</p></li>
+          <li class="ledger__item"><span class="ledger__dot"></span><p class="ledger__title">Performance como premissa</p><p class="ledger__meta">Escalabilidade</p></li>
+          <li class="ledger__item"><span class="ledger__dot"></span><p class="ledger__title">Organização operacional real</p><p class="ledger__meta">Resultados mensuráveis</p></li>
+        </ol>
+        <ul class="values" aria-label="Diferenciais">
+          <li>Segurança e compliance</li>
+          <li>Automações inteligentes</li>
+          <li>Performance e escalabilidade</li>
+          <li>IA aplicada ao seu negócio</li>
+          <li>Resultados mensuráveis</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="block-06" data-block="6">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">06</span>
+        <p class="block__index">06 / 11</p>
+        <p class="eyebrow">Segmentos</p>
+        <h2 class="block__title">Soluções adaptadas à realidade de cada operação.</h2>
+        <ol class="plan-flow">
+          <li class="plan-step"><span class="plan-step__dot"></span><p class="plan-step__label">Imobiliárias</p><p class="plan-step__ref">Atendimento, informações de imóveis, documentos e rotinas comerciais em fluxos centralizados.</p></li>
+          <li class="plan-step"><span class="plan-step__dot"></span><p class="plan-step__label">Advocacia</p><p class="plan-step__ref">Informações, documentos, atendimento e processos internos do escritório organizados.</p></li>
+          <li class="plan-step plan-step--accent"><span class="plan-step__dot"></span><p class="plan-step__label">Comércios</p><p class="plan-step__ref">Informações conectadas, menos trabalho manual e mais visibilidade das rotinas.</p></li>
+        </ol>
+        <p class="block__note">Partimos da operação real para definir o que vale automatizar, integrar ou transformar em software.</p>
+      </div>
+    </section>
+
+    <section class="block" id="block-07" data-block="7">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">07</span>
+        <p class="block__index">07 / 11</p>
+        <p class="eyebrow">Liderança</p>
+        <h2 class="block__title">Liderança que constrói o futuro.</h2>
+        <div class="people-grid">
+          <div class="person-card" data-member="lukas" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Lukas Alexandre Rosa: ver mais">
+            <p class="person-card__name">Lukas Alexandre Rosa</p>
+            <p class="person-card__role">Fundador &amp; Software Architect</p>
+            <ul class="person-card__areas"><li>Produto, software, automação e IA</li><li>Organização, performance e inovação aplicada</li></ul>
+          </div>
+          <div class="person-card" data-member="leonardo" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Leonardo Silva Kirime: ver mais">
+            <p class="person-card__name">Leonardo Silva Kirime</p>
+            <p class="person-card__role">Fundador &amp; Security Developer</p>
+            <ul class="person-card__areas"><li>Desenvolvimento e cibersegurança</li><li>Proteção de dados e visão estratégica</li></ul>
+          </div>
+        </div>
+        <p class="people-hint">Clique em um card para ver mais.</p>
+      </div>
+    </section>
+
+    <section class="block" id="block-08" data-block="8">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">08</span>
+        <p class="block__index">08 / 11</p>
+        <p class="eyebrow">Software real</p>
+        <h2 class="block__title">Não é só marketing — é software que já está em uso.</h2>
+        <div class="stage-flow">
+          <section class="stage stage--done">
+            <p class="stage__kicker">Vaultify</p>
+            <h3 class="stage__title">Cofre de credenciais</h3>
+            <ul class="stage__list"><li>Cofre criptografado (AES-256)</li><li>Projetos isolados por cliente</li><li>Sessão central protegida</li></ul>
+          </section>
+          <section class="stage stage--review">
+            <p class="stage__kicker">LK System</p>
+            <h3 class="stage__title">O sistema que a própria LK usa</h3>
+            <ul class="stage__list"><li>Board operacional em tempo real</li><li>Módulos por área (Diretoria, Comercial, Jurídico)</li><li>Visão consolidada do proprietário</li></ul>
+          </section>
+        </div>
+        <p class="progress-msg">Interfaces reais dos sistemas que construímos e operamos.</p>
+      </div>
+    </section>
+
+    <section class="block" id="block-09" data-block="9">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">09</span>
+        <p class="block__index">09 / 11</p>
+        <p class="eyebrow">Resultados</p>
+        <h2 class="block__title">Tecnologia aplicada para gerar impacto real.</h2>
+        <p class="block__lead">Construímos soluções que funcionam, evoluem e fazem diferença na operação de cada cliente.</p>
+        <div class="idea-grid">
+          <div class="idea-card">
+            <p class="stat">3x</p>
+            <p class="idea-card__title">Mais eficiência</p>
+            <p class="idea-card__text">Processos mais organizados com sistemas digitais sob medida.</p>
+          </div>
+          <div class="idea-card">
+            <p class="stat">Ágil</p>
+            <p class="idea-card__title">Entrega</p>
+            <p class="idea-card__text">Desenvolvimento focado em entregas funcionais e iterativas.</p>
+          </div>
+          <div class="idea-card">
+            <p class="stat">100%</p>
+            <p class="idea-card__title">Comprometimento</p>
+            <p class="idea-card__text">Atenção total a cada cliente, do início até a entrega final.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="block-10" data-block="10">
+      <div class="block__inner container">
+        <span class="block__ghost" aria-hidden="true">10</span>
+        <p class="block__index">10 / 11</p>
+        <p class="eyebrow">Próximo passo</p>
+        <h2 class="block__title">Vamos transformar sua ideia em uma solução digital profissional?</h2>
+        <ol class="next-steps">
+          <li><span class="next-steps__num">1</span> Entender a operação e os gargalos atuais</li>
+          <li><span class="next-steps__num">2</span> Mapear o que vale automatizar, integrar ou transformar em software</li>
+          <li><span class="next-steps__num">3</span> Estruturar a solução com clareza e execução</li>
+          <li><span class="next-steps__num">4</span> Entregar de forma iterativa e evoluir junto</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 11 — FECHAMENTO ============ -->
+    <section class="block block--closing" id="block-11" data-block="11">
+      <div class="block__inner container block__inner--center">
+        <img class="closing-brand" src="assets/brand/banner.webp" alt="LK Technologies Brasil — Software &amp; Solutions" />
+        <h2 class="block__title block__title--closing">
+          Tecnologia com propósito. <span class="accent">Soluções com impacto.</span>
+        </h2>
+        <p class="contact"><strong>lktechnologiesbrasil.com</strong> · Solicite uma proposta</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Slide 07: painel expandido dos integrantes. Conteúdo e comportamento em members.js. -->
+  <dialog class="member-modal" id="member-modal" aria-labelledby="member-modal-name">
+    <div class="member-modal__panel" tabindex="-1">
+      <button type="button" class="member-modal__close" aria-label="Fechar painel">&times;</button>
+      <div class="member-modal__body" id="member-modal-body"></div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="main.js"></script>
+  <script src="bg.js"></script>
+  <script src="members.js"></script>
+</body>
+</html>

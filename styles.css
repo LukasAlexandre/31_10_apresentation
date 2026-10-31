@@ -1,0 +1,1651 @@
+/* Apresentação institucional — LK Technologies Brasil. Base: protótipo de abertura em Three.js + slides em HTML/CSS puro. */
+
+
+/* Tokens — identidade LK Technologies Brasil (valores do CSS publicado em lktechnologiesbrasil.com): fundo #050505, dourado #DEBB77 / #A68A5E / #F5D898, texto #F5F0E6. */
+:root {
+  --bg-base: #050505;
+  --bg-base-2: #090909;
+  --bg-deep: #0d0b09;
+  --brand-lime: #debb77;
+  --brand-teal: #a68a5e;
+  --brand-mint: #f5d898;
+  --brand-gradient: linear-gradient(135deg, #debb77 0%, #f5d898 50%, #a68a5e 100%);
+  --brand-gradient-v: linear-gradient(180deg, #debb77, #a68a5e);
+  --text-primary: #f5f0e6;
+  --text-secondary: #c9c3b6;
+  --text-tertiary: #a7a298;
+  --accent: #debb77;
+  --accent-soft: #a68a5e;
+  --line: rgba(166, 138, 94, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.12);
+
+  --font-display: "Montserrat", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  --eyebrow-size: clamp(0.72rem, 0.6rem + 0.4vw, 0.85rem);
+  --headline-size: clamp(2.6rem, 1.6rem + 4.2vw, 5.4rem);
+  --subheadline-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.35rem);
+  --indicator-size: clamp(0.78rem, 0.72rem + 0.2vw, 0.9rem);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-base);
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Hero (Bloco 01) ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 70% at 78% 42%, rgba(166, 138, 94, 0.08), transparent 60%),
+    linear-gradient(160deg, var(--bg-base-2) 0%, var(--bg-base) 55%, var(--bg-deep) 100%);
+  display: flex;
+  align-items: center;
+}
+
+.hero__canvas-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+#network-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Camada de legibilidade — nunca a fonte do conteúdo, só reforço de contraste. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 5, 5, 0.8) 0%,
+    rgba(5, 5, 5, 0.52) 32%,
+    rgba(5, 5, 5, 0.1) 58%,
+    rgba(5, 5, 5, 0) 78%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 96px);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.hero__eyebrow {
+  margin: 0 0 1.1em;
+  font-size: var(--eyebrow-size);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.hero__headline {
+  margin: 0;
+  font-size: var(--headline-size);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  max-width: 14ch;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.hero__subheadline {
+  margin: 0.9em 0 0;
+  font-size: var(--subheadline-size);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  max-width: 34ch;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.hero__note {
+  margin: 1.4em 0 0;
+  font-size: clamp(0.78rem, 0.72rem + 0.2vw, 0.9rem);
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  opacity: 0;
+}
+
+.hero__indicator {
+  margin: clamp(2.5rem, 8vh, 4.5rem) 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  font-size: var(--indicator-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  opacity: 0;
+}
+
+.hero__indicator-arrow {
+  display: inline-block;
+  color: var(--accent);
+  animation: none;
+}
+
+/* ---------- Entrada (sequência de aparição) ---------- */
+/* Ativada via classe no <main data-motion="ready">, adicionada por main.js.
+   Sem JS ou com prefers-reduced-motion, o CSS abaixo já garante estado final visível
+   (ver bloco de fallback logo adiante). */
+
+.hero[data-motion="ready"] .hero__eyebrow {
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+}
+.hero[data-motion="ready"] .hero__headline {
+  animation: rise 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
+}
+.hero[data-motion="ready"] .hero__subheadline {
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+}
+.hero[data-motion="ready"] .hero__note {
+  animation: fade-in 0.8s ease-out 1.5s forwards;
+}
+.hero[data-motion="ready"] .hero__indicator {
+  animation: fade-in 0.8s ease-out 1.7s forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Nenhum JS rodou (ex.: script bloqueado) ou motion ainda não iniciou por outro motivo:
+   depois de um instante, garantir que o conteúdo principal nunca fique invisível. */
+.hero:not([data-motion="ready"]):not([data-motion="skip"]) .hero__eyebrow,
+.hero:not([data-motion="ready"]):not([data-motion="skip"]) .hero__headline,
+.hero:not([data-motion="ready"]):not([data-motion="skip"]) .hero__subheadline,
+.hero:not([data-motion="ready"]):not([data-motion="skip"]) .hero__note,
+.hero:not([data-motion="ready"]):not([data-motion="skip"]) .hero__indicator {
+  animation: fade-in 0.6s ease-out 1.8s forwards;
+}
+
+/* prefers-reduced-motion e fallback "skip": conteúdo direto, sem nenhuma animação de entrada. */
+.hero[data-motion="skip"] .hero__eyebrow,
+.hero[data-motion="skip"] .hero__headline,
+.hero[data-motion="skip"] .hero__subheadline,
+.hero[data-motion="skip"] .hero__note,
+.hero[data-motion="skip"] .hero__indicator {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__eyebrow,
+  .hero__headline,
+  .hero__subheadline,
+  .hero__note,
+  .hero__indicator {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Fallback sem WebGL ---------- */
+/* Classe adicionada ao <body> por main.js quando a criação do contexto WebGL falha. */
+body.no-webgl .hero {
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 38%, rgba(166, 138, 94, 0.10), transparent 62%),
+    radial-gradient(ellipse 40% 45% at 92% 60%, rgba(166, 138, 94, 0.06), transparent 70%),
+    linear-gradient(160deg, var(--bg-base-2) 0%, var(--bg-base) 55%, var(--bg-deep) 100%);
+}
+body.no-webgl .hero__canvas-wrap {
+  display: none;
+}
+body.no-webgl .hero__scrim {
+  display: none;
+}
+
+/* ---------- Responsividade ---------- */
+
+@media (max-width: 1024px) {
+  .hero__scrim {
+    background: linear-gradient(
+      90deg,
+      rgba(5, 5, 5, 0.78) 0%,
+      rgba(5, 5, 5, 0.5) 40%,
+      rgba(5, 5, 5, 0.1) 68%,
+      rgba(5, 5, 5, 0) 85%
+    );
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    align-items: flex-end;
+    padding-top: calc(30vh + env(safe-area-inset-top, 0px));
+  }
+
+  .hero__canvas-wrap {
+    /* Rede migra para o topo, ocupando só a faixa superior — nunca domina a tela. */
+    inset: 0 0 auto 0;
+    height: 46vh;
+  }
+
+  .hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 5, 5, 0) 0%,
+      rgba(5, 5, 5, 0.55) 68%,
+      rgba(5, 5, 5, 0.92) 100%
+    );
+  }
+
+  .hero__content {
+    padding-bottom: calc(clamp(28px, 8vh, 56px) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero__headline {
+    max-width: 18ch;
+  }
+
+  .hero__subheadline {
+    max-width: none;
+  }
+
+  .hero__indicator {
+    margin-top: clamp(1.8rem, 6vh, 3rem);
+  }
+}
+
+@media (max-width: 720px) and (max-height: 560px) {
+  /* Telas baixas em paisagem: reduzir a faixa da rede para não empurrar o texto para fora. */
+  .hero__canvas-wrap {
+    height: 34vh;
+  }
+  .hero {
+    padding-top: calc(20vh + env(safe-area-inset-top, 0px));
+  }
+}
+
+/* =====================================================================
+   DESIGN SYSTEM — Slides 02–10
+   Reaproveita os tokens definidos em :root no topo deste arquivo.
+   ===================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 96px);
+}
+
+.deck {
+  position: relative;
+}
+
+.block {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-base-2) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: clamp(64px, 10vh, 120px) 0;
+  overflow: hidden;
+  scroll-margin-top: 0;
+}
+
+.block__inner {
+  position: relative;
+  z-index: 2;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.block__inner--center {
+  text-align: center;
+}
+
+.block__index {
+  margin: 0 0 1.4em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  margin: 0 0 0.9em;
+  font-size: clamp(0.72rem, 0.6rem + 0.3vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.block__title {
+  margin: 0;
+  font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  max-width: 22ch;
+}
+
+.block__title--closing {
+  max-width: none;
+}
+
+.block__lead {
+  margin: 0.9em 0 0;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 60ch;
+}
+
+.block__lead--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.block__note {
+  margin: 1.6em 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+  max-width: 68ch;
+}
+
+.block__note code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+  color: var(--accent);
+  background: rgba(166, 138, 94, 0.08);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* ---------- Fluxo horizontal (slides 02 e 10) ---------- */
+
+.flow {
+  list-style: none;
+  margin: 2.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1.1rem;
+  column-gap: 0;
+  align-items: center;
+  max-width: 980px;
+}
+
+.flow--center {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.4rem;
+}
+
+.flow__step {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 1rem 0 0;
+  position: relative;
+}
+
+.flow--center .flow__step {
+  padding-right: 0;
+}
+
+.flow__step:not(:last-child)::after {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: rgba(166, 138, 94, 0.45);
+  margin: 0 0.55rem;
+  flex: none;
+}
+
+.flow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  box-shadow: 0 0 8px rgba(166, 138, 94, 0.6);
+  flex: none;
+}
+
+.flow__step--accent .flow__dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(166, 138, 94, 0.9);
+}
+
+.flow__label {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.flow--faint .flow__label {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.flow__step--accent .flow__label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ---------- Slide 02: a pergunta como protagonista ---------- */
+
+.block__title--question {
+  font-size: clamp(2.3rem, 1.3rem + 4.4vw, 4.8rem);
+  line-height: 1.08;
+  max-width: 17ch;
+}
+
+/* ---------- Slide 03: a ideia ---------- */
+
+.idea-grid {
+  margin-top: 2.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 1040px;
+}
+
+.idea-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.idea-card--accent {
+  border-color: rgba(166, 138, 94, 0.45);
+  background: rgba(166, 138, 94, 0.06);
+}
+
+.idea-card__title {
+  margin: 0 0 0.45em;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.idea-card__text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* ---------- Tags de estado ---------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.28em 0.65em;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.tag--merged {
+  color: var(--brand-lime);
+  background: rgba(222, 187, 119, 0.1);
+  border-color: rgba(222, 187, 119, 0.28);
+}
+
+.tag--open {
+  color: var(--brand-teal);
+  background: rgba(166, 138, 94, 0.1);
+  border-color: rgba(166, 138, 94, 0.28);
+}
+
+.tag--pending {
+  color: rgba(255,255,255,.7);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* ---------- Slide 05: linha do tempo de registros ---------- */
+
+.ledger {
+  list-style: none;
+  margin: 2.4rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  position: relative;
+}
+
+.ledger__item {
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(166, 138, 94, 0.3);
+}
+
+.ledger__dot {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  box-shadow: 0 0 8px rgba(166, 138, 94, 0.6);
+}
+
+.ledger__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ledger__meta {
+  margin: 0.3em 0 0;
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+}
+
+/* ---------- Slide 06: como planejamos ---------- */
+
+.plan-flow {
+  list-style: none;
+  margin: 2.6rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  max-width: 1040px;
+}
+
+.plan-step {
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(166, 138, 94, 0.3);
+}
+
+.plan-step__dot {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  box-shadow: 0 0 8px rgba(166, 138, 94, 0.6);
+}
+
+.plan-step--accent {
+  border-top-color: rgba(166, 138, 94, 0.8);
+}
+
+.plan-step--accent .plan-step__dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(166, 138, 94, 0.9);
+}
+
+.plan-step__label {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.plan-step__ref {
+  margin: 0.4em 0 0;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* ---------- Slide 07: time ---------- */
+
+.people-grid {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.person-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.person-card--mentor {
+  border-color: rgba(166, 138, 94, 0.3);
+  background: rgba(166, 138, 94, 0.05);
+}
+
+.person-card__name {
+  margin: 0 0 0.3em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.person-card__role {
+  margin: 0 0 1em;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+.person-card__areas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.person-card__areas li {
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+/* ---------- Slide 10: próximos passos ---------- */
+
+.next-steps {
+  margin: 2.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 860px;
+}
+
+.next-steps li {
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  gap: 1.1rem;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.next-steps__num {
+  flex: none;
+  width: 1.7em;
+  height: 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(166, 138, 94, 0.45);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* ---------- Slide 11: encerramento ---------- */
+
+.block--closing {
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(166, 138, 94, 0.07), transparent 65%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 100%);
+}
+
+.block--closing .block__title--closing {
+  font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3.2rem);
+  max-width: 22ch;
+  margin: 0 auto;
+}
+
+/* ---------- Ícones funcionais (sprite inline em index.html) ---------- */
+
+.ico {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.idea-card .ico {
+  margin-bottom: 0.9rem;
+}
+
+/* ---------- Slide 04: jornada em quatro frentes ---------- */
+
+.journey {
+  list-style: none;
+  margin: 2.6rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 1120px;
+}
+
+.journey__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+/* Linha que liga um passo ao próximo */
+.journey__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 1.4rem;
+  left: 3.2rem;
+  right: -0.9rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(166, 138, 94, 0.45), rgba(166, 138, 94, 0.1));
+}
+
+.journey__icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(166, 138, 94, 0.45);
+  background: rgba(166, 138, 94, 0.06);
+  position: relative;
+  z-index: 1;
+}
+
+.journey__step--accent .journey__icon {
+  border-color: rgba(166, 138, 94, 0.8);
+  box-shadow: 0 0 14px rgba(166, 138, 94, 0.45);
+}
+
+.journey__text {
+  margin: 0;
+  flex: 1;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+/* ---------- Slide 05: valores da tecnologia ---------- */
+
+.values {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.values li {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  padding: 0.45em 1em;
+  border-radius: 999px;
+  border: 1px solid rgba(166, 138, 94, 0.3);
+  background: rgba(166, 138, 94, 0.06);
+}
+
+/* ---------- Slide 08: onde estamos (três estágios conectados) ---------- */
+
+.stage-flow {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  max-width: 1180px;
+}
+
+.stage {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.3rem 1.4rem 1.4rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Conector entre estágios */
+.stage:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 2.1rem;
+  right: -1.6rem;
+  width: 1.6rem;
+  height: 1px;
+  background: rgba(166, 138, 94, 0.5);
+}
+
+.stage__kicker {
+  margin: 0 0 0.3em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stage__title {
+  margin: 0 0 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.stage__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.stage__list li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+.stage__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.32em;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+}
+
+.stage--done { border-color: rgba(222, 187, 119, 0.32); background: rgba(222, 187, 119, 0.04); }
+.stage--done .stage__kicker { color: var(--brand-lime); }
+.stage--done .stage__list li::before { color: var(--brand-lime); background: rgba(222, 187, 119, 0.35); }
+
+.stage--review { border-color: rgba(166, 138, 94, 0.45); background: rgba(166, 138, 94, 0.05); }
+.stage--review .stage__kicker { color: var(--accent); }
+.stage--review .stage__list li::before { color: var(--accent-soft); }
+
+.stage--next { border-style: dashed; }
+.stage--next .stage__kicker { color: var(--text-tertiary); }
+.stage--next .stage__list li::before { color: var(--text-tertiary); border-style: dashed; }
+
+.progress-msg {
+  margin: 1.8rem 0 0;
+  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--accent);
+  max-width: 44ch;
+}
+
+/* ---------- Backgrounds animados dos slides 02–10 (ver bg.js) ---------- */
+/* Camada decorativa atrás do conteúdo. A máscara reduz a intensidade sobre a área do texto,
+   para que o fundo dê atmosfera sem competir com a leitura. */
+
+.block__fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  -webkit-mask-image: radial-gradient(ellipse 48% 50% at 42% 52%, rgba(0, 0, 0, 0.5) 30%, #000 100%);
+  mask-image: radial-gradient(ellipse 48% 50% at 42% 52%, rgba(0, 0, 0, 0.5) 30%, #000 100%);
+}
+
+.block.is-visible .block__fx {
+  opacity: 1;
+}
+
+/* Fechamento: texto centralizado, então a área protegida também é central. */
+.block__fx--closing {
+  -webkit-mask-image: radial-gradient(ellipse 40% 36% at 50% 50%, rgba(0, 0, 0, 0.5) 30%, #000 100%);
+  mask-image: radial-gradient(ellipse 40% 36% at 50% 50%, rgba(0, 0, 0, 0.5) 30%, #000 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block__fx {
+    transition: none;
+  }
+}
+
+/* ---------- Responsividade dos novos componentes ---------- */
+
+@media (max-width: 1100px) {
+  .journey { grid-template-columns: repeat(2, 1fr); row-gap: 1.6rem; }
+  .journey__step::after { display: none; }
+}
+
+@media (max-width: 900px) {
+  .plan-flow { grid-template-columns: repeat(3, 1fr); row-gap: 1.6rem; }
+  .ledger { grid-template-columns: repeat(2, 1fr); row-gap: 1.6rem; }
+  .stage-flow { grid-template-columns: 1fr; }
+  .stage::after { display: none; }
+}
+
+@media (max-width: 560px) {
+  .journey,
+  .plan-flow,
+  .ledger { grid-template-columns: 1fr; }
+  .next-steps li { flex-wrap: wrap; }
+}
+
+/* =====================================================================
+   NAVEGAÇÃO — dots 01–10 (scroll-spy via main.js)
+   ===================================================================== */
+
+.dotnav {
+  position: fixed;
+  right: clamp(10px, 2vw, 22px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dotnav__item {
+  appearance: none;
+  border: none;
+  background: transparent;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dotnav__item span {
+  font-size: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: block;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.dotnav__item:hover span {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dotnav__item.is-active span {
+  background: var(--accent);
+  transform: scale(1.6);
+  box-shadow: 0 0 8px rgba(166, 138, 94, 0.7);
+}
+
+@media (max-width: 720px) {
+  .dotnav {
+    right: 8px;
+    gap: 7px;
+  }
+  .dotnav__item {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ---------- Motion leve dos slides 02–10 (fade + rise ao entrar na viewport) ----------
+   Apresentação ao vivo: conteúdo precisa estar legível em ~300–700ms, mesmo navegando
+   rápido entre blocos distantes — por isso durações e delays curtos. */
+
+.block__inner > * {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.block.is-visible .block__inner > * {
+  animation: rise 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.block.is-visible .block__inner > *:nth-child(1) { animation-delay: 0s; }
+.block.is-visible .block__inner > *:nth-child(2) { animation-delay: 0.04s; }
+.block.is-visible .block__inner > *:nth-child(3) { animation-delay: 0.08s; }
+.block.is-visible .block__inner > *:nth-child(4) { animation-delay: 0.12s; }
+.block.is-visible .block__inner > *:nth-child(5) { animation-delay: 0.16s; }
+.block.is-visible .block__inner > *:nth-child(6) { animation-delay: 0.2s; }
+.block.is-visible .block__inner > *:nth-child(n + 7) { animation-delay: 0.22s; }
+
+/* Sem JS ou motion ainda não avaliado: garantir visibilidade após um instante curto. */
+.block:not(.is-visible) .block__inner > * {
+  animation: fade-in 0.3s ease-out 0.4s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block__inner > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .block {
+    padding: clamp(56px, 12vh, 90px) 0;
+  }
+  .flow__step:not(:last-child)::after {
+    width: 14px;
+  }
+}
+
+/* ---------- Projeção em tela grande (≥1700×1000) ----------
+   Em 1920×1080 o conteúdo dos slides 02–10 ocupa pouco da tela e o texto fica pequeno para
+   quem está longe. Ampliação só do conteúdo (hero, fundos e navegação ficam como estão).
+   Abaixo desse tamanho (notebook 1366×768, janela com barras) nada muda. */
+@media (min-width: 1700px) and (min-height: 1000px) {
+  .block__inner {
+    zoom: 1.25;
+  }
+}
+
+/* =====================================================================
+   IDENTIDADE LK TECHNOLOGIES BRASIL — camada de marca
+   Tipografia, gradiente de marca, logos oficiais e acabamento.
+   ===================================================================== */
+
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+/* Títulos em Montserrat (como o logotipo); corpo em Inter (como o site). */
+.hero__headline,
+.block__title,
+.stage__title,
+.idea-card__title,
+.person-card__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.hero__headline { line-height: 1.08; }
+.block__title { line-height: 1.16; }
+.eyebrow,
+.hero__eyebrow,
+.block__index,
+.stage__kicker { font-family: var(--font-body); font-weight: 700; }
+.flow__label,
+.journey__text,
+.plan-step__label,
+.ledger__title { font-weight: 500; }
+
+/* Destaque: gradiente de marca no texto. */
+.accent,
+.progress-msg {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.person-card__role { color: var(--brand-lime); }
+.block__note code { color: var(--brand-lime); background: rgba(222, 187, 119, 0.1); }
+
+/* Marca registrada no topo de cada slide (logo Web 3.0 — fixa, discreta). */
+.brandbar {
+  position: fixed;
+  top: clamp(14px, 2.4vh, 28px);
+  left: clamp(20px, 3vw, 48px);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+}
+.brandbar__logo { display: block; height: clamp(30px, 4.4vh, 46px); width: auto; }
+.brandbar__sep { width: 1px; height: 24px; background: rgba(255, 255, 255, 0.25); }
+.brandbar__tag {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Fio de marca no topo de cada bloco e numeral fantasma. */
+.block { background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-base-2) 100%); border-top: 0; }
+.block::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 3;
+  background: var(--brand-gradient); opacity: 0.55;
+}
+.block__index {
+  display: inline-block;
+  padding-bottom: 0.45em;
+  border-bottom: 2px solid transparent;
+  border-image: var(--brand-gradient) 1;
+  color: var(--text-secondary);
+}
+.block__ghost {
+  position: absolute; z-index: 0; right: clamp(40px, 6vw, 110px); bottom: -0.12em;
+  font-family: var(--font-display); font-size: clamp(14rem, 34vw, 34rem); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px rgba(166, 138, 94, 0.11);
+  pointer-events: none; user-select: none;
+}
+
+/* Cartões: borda em gradiente de marca (padrão do site) sobre o azul-marinho. */
+.idea-card, .person-card, .stage {
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  border-radius: 14px;
+}
+.idea-card--accent, .person-card--mentor {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg-base), var(--bg-base)) padding-box, var(--brand-gradient) border-box;
+}
+.stage--done { border-color: rgba(222, 187, 119, 0.4); background: rgba(222, 187, 119, 0.05); }
+.stage--review { border-color: rgba(166, 138, 94, 0.55); background: rgba(166, 138, 94, 0.08); }
+.stage--review .stage__kicker { color: #f5d898; }
+.tag--open { color: #f5d898; background: rgba(166, 138, 94, 0.14); border-color: rgba(166, 138, 94, 0.5); }
+.tag--merged { background: rgba(222, 187, 119, 0.12); border-color: rgba(222, 187, 119, 0.45); }
+.ico { stroke: var(--brand-lime); }
+.flow__dot, .ledger__dot, .plan-step__dot { background: var(--brand-teal); }
+.flow__step--accent .flow__dot, .plan-step--accent .plan-step__dot { background: var(--brand-lime); box-shadow: 0 0 12px rgba(222, 187, 119, 0.8); }
+.ledger__item, .plan-step { border-top-color: rgba(166, 138, 94, 0.55); }
+.plan-step--accent { border-top-color: var(--brand-lime); }
+.next-steps__num { border: 0; background: var(--brand-gradient); color: var(--bg-base); }
+.values li { border-color: rgba(166, 138, 94, 0.5); background: rgba(245, 216, 152, 0.06); }
+.dotnav__item.is-active span { background: var(--brand-lime); box-shadow: 0 0 8px rgba(222, 187, 119, 0.8); }
+
+/* Fechamento: logotipo e contato da LK. */
+.block--closing {
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(245, 216, 152, 0.08), transparent 65%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 100%);
+}
+.partners {
+  margin-top: clamp(1.6rem, 4vh, 3rem); padding-top: 1.4rem;
+  display: flex; align-items: center; justify-content: center; gap: clamp(1.4rem, 4vw, 3.2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.partners img { display: block; height: clamp(34px, 5.2vh, 56px); width: auto; }
+.partners__label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); }
+
+/* Hero: logo institucional + fio de marca. */
+.hero__eyebrow { color: var(--brand-lime); }
+.hero__brand { margin: 0 0 clamp(1.4rem, 4vh, 2.4rem); }
+.hero__brand img { display: block; height: clamp(44px, 7vh, 72px); width: auto; }
+.hero__rule { display: block; width: 64px; height: 3px; margin: 1.4em 0 0; background: var(--brand-gradient); border-radius: 2px; }
+.hero__indicator-arrow { color: var(--brand-lime); }
+
+@media (max-width: 720px) { .brandbar__tag, .brandbar__sep { display: none; } .block__ghost { display: none; } }
+@media print { .brandbar { display: none; } }
+
+/* Folga vertical menor: o slide 08 (o mais alto) precisa caber em 1366×768 sem rolagem interna. */
+.block { padding: clamp(56px, 7.5vh, 120px) 0; }
+
+/* ---------- Slide 07: cards expansíveis + painel do integrante (members.js) ---------- */
+
+.person-card[data-member] {
+  position: relative;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+.person-card[data-member]::after {
+  content: "+";
+  position: absolute;
+  top: 0.7rem;
+  right: 0.8rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(222, 187, 119, 0.45);
+  color: var(--brand-lime);
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.person-card[data-member] .person-card__name { padding-right: 1.6rem; }
+.person-card[data-member]:hover,
+.person-card[data-member]:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px rgba(222, 187, 119, 0.55), 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+.person-card[data-member]:hover::after,
+.person-card[data-member]:focus-visible::after { opacity: 1; transform: rotate(90deg); }
+.person-card[data-member]:focus-visible { outline: 2px solid var(--brand-lime); outline-offset: 3px; }
+.person-card[data-member]:active { transform: scale(0.98); transition-duration: 80ms; }
+.person-card.is-selected { box-shadow: 0 0 0 1px var(--brand-lime), 0 0 24px rgba(222, 187, 119, 0.35); }
+
+.people-hint {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+
+/* Trava a rolagem do deck enquanto o painel está aberto (sem mover o layout: a barra já é oculta). */
+html.member-open { overflow: hidden; }
+
+.member-modal {
+  width: min(920px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  overflow: visible;
+}
+.member-modal::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.member-modal[open] { animation: member-in 180ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.member-modal[open]::backdrop { animation: member-fade 180ms ease; }
+@keyframes member-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes member-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.member-modal__panel {
+  position: relative;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: clamp(1.4rem, 3vw, 2.6rem);
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 100%) padding-box,
+    linear-gradient(135deg, rgba(222, 187, 119, 0.7), rgba(166, 138, 94, 0.5)) border-box;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-body);
+}
+.member-modal__panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.6rem;
+  right: 1.6rem;
+  height: 2px;
+  background: var(--brand-gradient);
+  opacity: 0.7;
+}
+
+.member-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.member-modal__close:hover { background: rgba(222, 187, 119, 0.12); border-color: rgba(222, 187, 119, 0.6); }
+.member-modal__close:focus-visible { outline: 2px solid var(--brand-lime); outline-offset: 2px; }
+
+.member-modal__eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: var(--eyebrow-size);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.member-modal__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+  line-height: 1.05;
+}
+.member-modal__area {
+  margin: 0.5rem 3rem 0 0;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
+  line-height: 1.35;
+  color: var(--brand-lime);
+}
+
+.member-modal__grid {
+  margin-top: clamp(1.2rem, 2.6vh, 2rem);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2.6rem);
+}
+.member-modal__label {
+  margin: 0 0 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f5d898;
+}
+.member-modal__col .member-modal__label:not(:first-child) { margin-top: 1.4rem; }
+
+.member-modal__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: did;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.member-modal__list li {
+  counter-increment: did;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--card-bg);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.member-modal__list li::before {
+  content: counter(did);
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: var(--bg-base);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.member-tag {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.member-tag--done { color: var(--brand-lime); background: rgba(222, 187, 119, 0.12); border-color: rgba(222, 187, 119, 0.45); }
+.member-tag--review { color: #f5d898; background: rgba(166, 138, 94, 0.14); border-color: rgba(166, 138, 94, 0.5); }
+
+.member-modal__extra {
+  margin: 0.8rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+}
+.member-modal__text {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.member-modal__text--why {
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--brand-lime);
+  color: var(--text-primary);
+}
+
+@media (max-width: 720px) {
+  .member-modal__grid { grid-template-columns: 1fr; }
+  .member-modal__list li { grid-template-columns: auto 1fr; }
+  .member-modal__list li .member-tag { grid-column: 2; justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .person-card[data-member],
+  .person-card[data-member]::after { transition: none; }
+  .member-modal[open],
+  .member-modal[open]::backdrop { animation: none; }
+}
+.member-modal__panel:focus { outline: none; }
+
+/* ---------- Slide 07: legenda dos boxes "O que fez na prática" (members.js) ---------- */
+
+.member-modal__list li[data-tip] {
+  cursor: help;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+.member-modal__list li[data-tip]:hover,
+.member-modal__list li[data-tip][aria-describedby] {
+  border-color: rgba(222, 187, 119, 0.5);
+  background: rgba(222, 187, 119, 0.05);
+}
+.member-modal__list li[data-tip]:focus { outline: none; }
+.member-modal__list li[data-tip]:focus-visible { outline: 2px solid var(--brand-lime); outline-offset: 2px; }
+
+.member-tip {
+  position: fixed;
+  z-index: 2;
+  width: max-content;
+  max-width: min(340px, calc(100vw - 16px));
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(166, 138, 94, 0.55);
+  border-radius: 12px;
+  background: #141310;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  font-family: var(--font-body);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.member-tip[hidden] { display: none; }
+.member-tip.is-visible { opacity: 1; transform: none; }
+.member-tip p { margin: 0; }
+.member-tip__id {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f5d898;
+}
+.member-tip__title {
+  margin-top: 0.25rem !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand-lime);
+}
+.member-tip__desc {
+  margin-top: 0.4rem !important;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+.member-tip__ref {
+  margin-top: 0.55rem !important;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+@media (prefers-reduced-motion: reduce) {
+  .member-modal__list li[data-tip],
+  .member-tip { transition: none; }
+}
+
+/* ---------- Slide 09: o sistema na prática (captura real da interface) ---------- */
+
+.screen-shot {
+  margin: clamp(1.2rem, 3vh, 2.2rem) 0 0;
+  /* Largura limitada pela altura disponível: o slide inteiro cabe na tela sem cortar a imagem. */
+  width: min(100%, calc((78vh - 250px) * 16 / 9));
+  min-width: min(100%, 480px);
+}
+.screen-shot__frame {
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background:
+    linear-gradient(var(--bg-deep), var(--bg-deep)) padding-box,
+    linear-gradient(135deg, rgba(222, 187, 119, 0.6), rgba(166, 138, 94, 0.45)) border-box;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.screen-shot__bar {
+  display: flex;
+  gap: 6px;
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+.screen-shot__bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+}
+.screen-shot__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+.screen-shot__caption {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text-tertiary);
+}
+.screen-shot__credit {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-lime);
+  white-space: nowrap;
+}
+/* Telas grandes: .block__inner recebe zoom 1.25 — compensa para a captura continuar cabendo na altura. */
+@media (min-width: 1700px) and (min-height: 1000px) {
+  .screen-shot { width: min(100%, calc((62vh - 200px) * 16 / 9)); }
+}
+
+/* Legenda fora do modal + linha com seta até o box (members.js). Sobrescreve a versão anterior. */
+.member-tip {
+  width: auto;
+  transform: none;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+.member-tip.is-visible { transform: none; }
+.member-tip--narrow { padding: 0.75rem 0.85rem; }
+.member-tip--narrow .member-tip__title { font-size: 0.88rem; }
+.member-tip--narrow .member-tip__desc { font-size: 0.8rem; line-height: 1.4; }
+.member-tip--narrow .member-tip__ref { font-size: 0.7rem; }
+
+.member-tip-link {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+.member-tip-link.is-visible { opacity: 1; }
+.member-tip-link line { stroke: #f5d898; stroke-width: 1.5; stroke-linecap: round; }
+.member-tip-link circle,
+.member-tip-link marker path { fill: #f5d898; }
+@media (prefers-reduced-motion: reduce) {
+  .member-tip-link { transition: none; }
+}
+
+/* ---------- LK: ajustes específicos ---------- */
+.brandbar__logo { height: clamp(34px, 5vh, 52px); mix-blend-mode: lighten; border-radius: 6px; }
+.hero__brand img { mix-blend-mode: lighten; height: clamp(64px, 11vh, 110px); }
+.hero__headline { max-width: 16ch; }
+.member-modal__name { font-weight: 600; }
+.plan-step__ref { font-size: 0.9rem; line-height: 1.45; color: var(--text-secondary); margin-top: 0.5em; }
+.feature-list { list-style: none; margin: 0.9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.feature-list li { font-size: 0.88rem; color: var(--text-tertiary); padding-left: 1rem; position: relative; }
+.feature-list li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; border-radius: 50%; background: var(--brand-lime); }
+.journey__text { font-weight: 700; }
+.stat { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.4rem, 1.6rem + 3vw, 4rem); line-height: 1; background: var(--brand-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 0.4rem; }
+.closing-brand { display: block; margin: 0 auto clamp(1rem, 3vh, 2rem); width: min(520px, 80%); height: auto; border-radius: 10px; }
+.contact { margin-top: 1.6rem; font-size: 1.05rem; letter-spacing: 0.04em; color: var(--text-secondary); }
+.contact strong { color: var(--brand-lime); font-weight: 600; }
+.person-card__bio { margin: 0.9rem 0 0; font-size: 0.9rem; line-height: 1.5; color: var(--text-tertiary); }
+.people-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 980px; }
+.closing-brand { border-radius: 0; -webkit-mask-image: radial-gradient(ellipse 72% 85% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 72% 85% at 50% 50%, #000 55%, transparent 100%); }
