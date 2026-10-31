@@ -96,7 +96,7 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 **Destaques**
 - Método: etapas mergeadas na Master ÷ etapas do épico (issues e PRs do GitHub, posição de 31/10/2026).
 - Só 3 de 131 issues estão fechadas porque elas só fecham após validação em Production: o GitHub subestima o que já está mergeado.
-- LKR Server ainda não tem épico no GitHub, por isso não tem percentual.
+- LKR Server (projeto Lkr-Server, 16 épicos E01–E16 e 132 issues): 0 concluídas, 37 em revisão, 27 em andamento, 12 bloqueadas, 56 a fazer. É fase de planejamento e documentação, ainda sem hospedagem concluída. Não entra no 73%, que é só de Clientes.
 - A Central está mergeada atrás de flag (OWNER/ADMIN); as 32 issues EG ainda estão abertas no GitHub.
 
 **Para discutir**
