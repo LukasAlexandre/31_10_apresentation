@@ -18,16 +18,9 @@
   "use strict";
 
   var SCENE_BY_BLOCK = {
-    2: "scatter", // O problema — pontos soltos, links que se formam e se desfazem
-    3: "order", // A solução — rede organizada, calma
-    4: "flow", // Como funciona — fluxo horizontal
-    5: "ledger", // Por que blockchain — cadeia de registros com pulsos
-    6: "build", // Como estamos construindo — progressão em degraus
-    7: "ambient", // Quem está construindo — sistema compartilhado, discreto
-    8: "progress", // O que já construímos e onde estamos — varredura de progresso
-    9: "ambient", // O sistema na prática — fundo discreto atrás da captura de tela
-    10: "path", // Próximos passos — trajetória rumo ao horizonte
-    11: "closing", // Resultado — rede solene e centrada
+    2: "scatter", 3: "order", 4: "flow", 5: "ledger", 6: "build",
+    7: "progress", // Planejamento por frente — varredura de progresso
+    8: "ambient", 9: "progress", 10: "ambient", 11: "path", 12: "closing",
   };
 
   var reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");

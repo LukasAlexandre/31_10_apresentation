@@ -48,6 +48,13 @@
       perguntas: ["Quais pendências da Gestão de Clientes V2 bloqueiam o encerramento?", "Gestão de Projetos V2 entra antes ou depois de reativar o comercial?"]
     },
     {
+      title: "Planejamento por frente",
+      objetivo: "Mostrar ao Leo, com percentuais, onde está cada frente do LK System, sem confundir desenvolvido com entregue.",
+      fala: "Separei em três frentes. O que já foi: a refatoração do login e da Central, mergeadas. Em desenvolvimento: Gestão e Cadastro de Clientes V2, com 8 de 11 etapas mergeadas, mas nenhuma validada em Production ainda. O que vem depois: a ficha 360° já tem 11 de 24 etapas desenvolvidas em PRs rascunho, projetos ainda é planejamento e a próxima página usável e o LK Clients ainda precisam ser mapeados.",
+      destaque: ["Método: etapas mergeadas na Master ÷ etapas do épico (issues e PRs do GitHub, posição de 31/10/2026).", "Só 3 de 131 issues estão fechadas porque elas só fecham após validação em Production: o GitHub subestima o que já está mergeado.", "LKR Server ainda não tem épico no GitHub, por isso não tem percentual.", "A Central está mergeada atrás de flag (OWNER/ADMIN); as 32 issues EG ainda estão abertas no GitHub."],
+      perguntas: ["Concorda em medir por etapa mergeada e não por issue fechada?", "Quando validamos Gestão de Clientes V2 em Production?", "Qual será a próxima página usável, possivelmente comercial?"]
+    },
+    {
       title: "Ecossistema e automação",
       objetivo: "Situar as iniciativas de apoio ao LK System sem prometer o que ainda não existe.",
       fala: "Em paralelo temos o LK Identity para login e cadastro centralizados, o LK Office para escritório virtual e automação de tarefas, e o LKR Server como infraestrutura própria. Tudo isso reduz trabalho manual, mas está em desenvolvimento — o Server, por exemplo, é parcial.",

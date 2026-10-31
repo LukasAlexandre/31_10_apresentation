@@ -210,3 +210,19 @@ body.on-hero .brandbar { opacity: 0; }
 .shots--duo { grid-template-columns: repeat(2, 1fr); }
 .shots--duo .shot figcaption { align-items: center; }
 @media (max-width: 900px) { .shots--duo { grid-template-columns: 1fr; } }
+
+/* ---- Planejamento por frente (slide 07) ---- */
+.fronts { margin-top: clamp(0.8rem, 1.8vh, 1.3rem); display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; align-items: stretch; }
+.fronts__col { padding: clamp(0.9rem, 1.8vh, 1.3rem) clamp(1rem, 1.5vw, 1.4rem); display: flex; flex-direction: column; gap: 0.5rem; }
+.fronts__col .tag-pill { align-self: flex-start; }
+.fronts__pct { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 5.5vh, 3.6rem); line-height: 1; background: var(--brand-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.fronts__pct small { font-size: 0.5em; margin-left: 0.05em; }
+.meter { height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+.meter span { display: block; height: 100%; border-radius: inherit; background: var(--brand-gradient); }
+.fronts__sub { margin: 0; min-height: 2.6em; font-size: 0.8rem; color: var(--text-secondary); }
+.fronts__list { list-style: none; margin: 0.3rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.fronts__list li { display: flex; flex-direction: column; gap: 0.15rem; padding-top: 0.55rem; border-top: 1px solid rgba(222, 187, 119, 0.18); }
+.fronts__list strong { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); }
+.fronts__list span { font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary); }
+.fronts__foot { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--text-secondary); }
+@media (max-width: 900px) { .fronts { grid-template-columns: 1fr; } }

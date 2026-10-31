@@ -87,7 +87,24 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 - Quais pendências da Gestão de Clientes V2 bloqueiam o encerramento?
 - Gestão de Projetos V2 entra antes ou depois de reativar o comercial?
 
-## 07 · Ecossistema e automação
+## 07 · Planejamento por frente
+
+**Objetivo:** Mostrar ao Leo, com percentuais, onde está cada frente do LK System, sem confundir desenvolvido com entregue.
+
+**O que dizer:** Separei em três frentes. O que já foi: a refatoração do login e da Central, mergeadas. Em desenvolvimento: Gestão e Cadastro de Clientes V2, com 8 de 11 etapas mergeadas, mas nenhuma validada em Production ainda. O que vem depois: a ficha 360° já tem 11 de 24 etapas desenvolvidas em PRs rascunho, projetos ainda é planejamento e a próxima página usável e o LK Clients ainda precisam ser mapeados.
+
+**Destaques**
+- Método: etapas mergeadas na Master ÷ etapas do épico (issues e PRs do GitHub, posição de 31/10/2026).
+- Só 3 de 131 issues estão fechadas porque elas só fecham após validação em Production: o GitHub subestima o que já está mergeado.
+- LKR Server ainda não tem épico no GitHub, por isso não tem percentual.
+- A Central está mergeada atrás de flag (OWNER/ADMIN); as 32 issues EG ainda estão abertas no GitHub.
+
+**Para discutir**
+- Concorda em medir por etapa mergeada e não por issue fechada?
+- Quando validamos Gestão de Clientes V2 em Production?
+- Qual será a próxima página usável, possivelmente comercial?
+
+## 08 · Ecossistema e automação
 
 **Objetivo:** Situar as iniciativas de apoio ao LK System sem prometer o que ainda não existe.
 
@@ -100,7 +117,7 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 **Para discutir**
 - Dessas três frentes, qual traz mais ganho para a operação agora?
 
-## 08 · O desenvolvimento na prática
+## 09 · O desenvolvimento na prática
 
 **Objetivo:** Mostrar interfaces reais, não só planejamento.
 
@@ -113,7 +130,7 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 **Para discutir**
 - Quais módulos migram para a nova identidade primeiro?
 
-## 09 · Situação comercial
+## 10 · Situação comercial
 
 **Objetivo:** Expor com transparência o principal desafio.
 
@@ -128,7 +145,7 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 - Qual público a gente deve priorizar para voltar a vender?
 - Quem assume a retomada do contato com a Bruna e até quando?
 
-## 10 · Parcerias e cenário atual
+## 11 · Parcerias e cenário atual
 
 **Objetivo:** Atualizar o status das parcerias e a visão financeira, sem tratar nada como fechado.
 
@@ -142,7 +159,7 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 - Qual é o saldo e as obrigações reais hoje?
 - Qual a nossa posição se o contrato com a Pigmentare não vier?
 
-## 11 · Próxima fase da LK
+## 12 · Próxima fase da LK
 
 **Objetivo:** Fechar com decisões e responsáveis.
 
