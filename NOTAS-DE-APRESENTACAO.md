@@ -104,10 +104,10 @@ Alinhamento estratégico · 31 de outubro de 2026 · Lukas Alexandre Rosa & Leon
 
 **Objetivo:** Mostrar interfaces reais, não só planejamento.
 
-**O que dizer:** Aqui é o que já aparece na tela. Central de Módulos, Gestão de Clientes V2 e a ficha do cliente 360°, que ainda é protótipo em desenvolvimento.
+**O que dizer:** Aqui é o que já aparece na tela, rodando local com dados de demonstração. Central de Módulos (Enterprise Glass V2), lista de clientes e a ficha do cliente 360°, que ainda está em desenvolvimento.
 
 **Destaques**
-- Só capturas reais — se faltar imagem, o slide mostra o espaço reservado.
+- Capturas reais do LK System rodando em ambiente local, com dados de demonstração (zeros são o banco local vazio, não números da empresa).
 - Identificar o 360° como protótipo/em desenvolvimento.
 
 **Para discutir**

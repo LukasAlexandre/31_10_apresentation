@@ -57,8 +57,8 @@
     {
       title: "O desenvolvimento na prática",
       objetivo: "Mostrar interfaces reais, não só planejamento.",
-      fala: "Aqui é o que já aparece na tela. Central de Módulos, Gestão de Clientes V2 e a ficha do cliente 360°, que ainda é protótipo em desenvolvimento.",
-      destaque: ["Só capturas reais — se faltar imagem, o slide mostra o espaço reservado.", "Identificar o 360° como protótipo/em desenvolvimento."],
+      fala: "Aqui é o que já aparece na tela, rodando local com dados de demonstração. Central de Módulos (Enterprise Glass V2), lista de clientes e a ficha do cliente 360°, que ainda está em desenvolvimento.",
+      destaque: ["Capturas reais do LK System rodando em ambiente local, com dados de demonstração (zeros são o banco local vazio, não números da empresa).", "Identificar o 360° como protótipo/em desenvolvimento."],
       perguntas: ["Falta mostrar alguma tela que você considera importante?"]
     },
     {
@@ -138,9 +138,9 @@
   // Capturas reais do slide 08. Ao salvar um arquivo em assets/telas/, adicione o nome aqui
   // (evita requisições a arquivos inexistentes). Sem o nome na lista, o slide mostra o espaço reservado.
   var TELAS_DISPONIVEIS = [
-    // "central-de-modulos.png",
-    // "gestao-de-clientes-v2.png",
-    // "cliente-dedicado-360.png"
+    "central-de-modulos.png",
+    "gestao-de-clientes-v2.png",
+    "cliente-dedicado-360.png"
   ];
   Array.prototype.forEach.call(document.querySelectorAll(".shot[data-src]"), function (fig) {
     var src = fig.getAttribute("data-src");
